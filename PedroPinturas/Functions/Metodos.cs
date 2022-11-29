@@ -1,5 +1,5 @@
-﻿using PacoPinturas.Exceptions;
-using PacoPinturas.Models;
+﻿using PedroPinturas.Exceptions;
+using PedroPinturas.Models;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -8,7 +8,7 @@ using System.Text;
 using System.Text.Json;
 using System.Transactions;
 
-namespace PacoPinturas.Functions
+namespace PedroPinturas.Functions
 {
     internal static class Metodos
     {

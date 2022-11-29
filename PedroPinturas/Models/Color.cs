@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PacoPinturas.Models
+namespace PedroPinturas.Models
 {
     internal class Color
     {

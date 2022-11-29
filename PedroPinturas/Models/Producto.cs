@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PacoPinturas.Models
+namespace PedroPinturas.Models
 {
         public enum Calidad { Estandar,Premium}
         public enum Productos { Spray, Cubo, Rotulador}
     class Producto
     {
         public string id { get; set; }
-        public string color { get; set; }
+        public Color color { get; set; }
         public int cantidad { get; set; }
         public decimal precio {
             get {
@@ -84,13 +84,13 @@ namespace PacoPinturas.Models
         {
             this.id = idNumberSeed.ToString();
             idNumberSeed++;
-            this.color = "";
+            this.color = new Color();
             this.cantidad = 0;
             this.calidad = Calidad.Estandar;
             this.productos = Productos.Spray;
         }
 
-        public Producto(string color, int cantidad, Calidad calidad , Productos productos){
+        public Producto(Color color, int cantidad, Calidad calidad , Productos productos){
             this.id = idNumberSeed.ToString();
             idNumberSeed++;
             this.color = color;

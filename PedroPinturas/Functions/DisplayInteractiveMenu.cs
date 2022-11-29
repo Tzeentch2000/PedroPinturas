@@ -1,10 +1,10 @@
-﻿using PacoPinturas.Exceptions;
-using PacoPinturas.Models;
+﻿using PedroPinturas.Exceptions;
+using PedroPinturas.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace PacoPinturas.Functions
+namespace PedroPinturas.Functions
 {
     internal static class DisplayInteractiveMenu
     {

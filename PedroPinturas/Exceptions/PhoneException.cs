@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace PacoPinturas.Exceptions
+namespace PedroPinturas.Exceptions
 {
     internal class PhoneException : Exception
     {
