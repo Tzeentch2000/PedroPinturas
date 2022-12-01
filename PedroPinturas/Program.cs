@@ -13,7 +13,7 @@ namespace PedroPinturas
     {
         static void Main(string[] args)
         {
-            List<Usuario> users = new List<Usuario>();
+            
             Usuario usuario = new Usuario();
 
             do
@@ -25,7 +25,7 @@ namespace PedroPinturas
                         try
                         {
                             //Login
-                            usuario = DisplayInteractiveMenu.login(users);
+                            usuario = DisplayInteractiveMenu.Login();
                             Console.WriteLine($"Bienvenido {usuario.NombreApellidos}");
                             //metodo
                             DisplayInteractiveMenu.InitialMenu(usuario);
@@ -38,10 +38,11 @@ namespace PedroPinturas
                         break;
                     case 2:
                         //Register
-                        usuario = DisplayInteractiveMenu.Registrarse(users);
+                        usuario = DisplayInteractiveMenu.Registrarse();
                         Console.WriteLine("¡Usuario registrado con éxito!");
-                        users.Add(usuario);
+                        Metodos.users.Add(usuario);
                         DisplayInteractiveMenu.InitialMenu(usuario);
+                        Metodos.WriteUser();
                         break;
                         //metodo
                 }

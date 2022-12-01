@@ -74,9 +74,9 @@ namespace PedroPinturas.Models
             } 
         }
 
-        public Calidad calidad;
+        public Calidad calidad { get; set; }
 
-        public Productos productos;
+        public Productos productos { get; set; }
 
         private static int idNumberSeed = 1;
 

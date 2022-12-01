@@ -15,9 +15,9 @@ namespace PedroPinturas.Models
    
 
         //Lista de productos
-        public List<Producto> productos;
+        public List<Producto> productos { get; set; }
 
-        public bool Entrega24h;
+        public bool Entrega24h { get; set; }
 
         public string Direccion { get; set; }
 

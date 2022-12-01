@@ -12,6 +12,7 @@ namespace PedroPinturas.Functions
 {
     internal static class Metodos
     {
+        public static List<Usuario> users = LoadUsers();
         public static Log Olog = new Log(@"../../../Log");
         //Comprobar que se ha introducido un número valido y si no preguntar hasta que se introduzca
         public static int CheckNumber(string menu, int range)
@@ -88,7 +89,7 @@ namespace PedroPinturas.Functions
         }
 
         //Comprobar si existe ese nombre de usuario
-        public static bool CheckUsername(List<Usuario> users, string username)
+        public static bool CheckUsername(string username)
         {
             var user = users.Find(user => user.User.Equals(username));
             if (user != null)
@@ -98,7 +99,7 @@ namespace PedroPinturas.Functions
             return true;
         }
         //Comprobar si el nombre de usuario y la contraseña pertenecen a un usuario
-        public static Usuario CheckLogin(List<Usuario> users, string username, string password)
+        public static Usuario CheckLogin(string username, string password)
         {
             var user = users.Find(user => user.User.Equals(username) && user.Contrasenia.Equals(password));
             return user;
@@ -161,13 +162,19 @@ namespace PedroPinturas.Functions
             return true;
         }
 
-        /*public static List<Pedido> FetchFilter(List<Pedido> pedidos, String fecha)
+        public static List<Usuario> LoadUsers()
         {
-            //thisDate1.ToString("MM/dd/yyyy") + ".");
-            var pedidosFiltro = pedidos.flatMap(pedido => 
-                pedido.Fecha.ToString("dd/MM/yyyy").Equals(fecha)
-                );
-            return pedidosFiltro;
-        }*/
+            string fileName = $@"../../../jsons/usuarios.json";
+            string jsonString = File.ReadAllText(fileName);
+            List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
+            return lista;
+        }
+
+        public static void WriteUser()
+        {
+            string fileName = $@"../../../jsons/usuarios.json";
+            string jsonString = JsonSerializer.Serialize(users);
+            File.WriteAllText(fileName, jsonString);
+        }
     }
 }

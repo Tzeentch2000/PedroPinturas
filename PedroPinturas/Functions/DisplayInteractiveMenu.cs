@@ -9,7 +9,7 @@ namespace PedroPinturas.Functions
     internal static class DisplayInteractiveMenu
     {
         //Menu registro
-        public static Usuario Registrarse(List<Usuario> users)
+        public static Usuario Registrarse()
         {
             string username = "";
             string password = "";
@@ -22,7 +22,7 @@ namespace PedroPinturas.Functions
                 try
                 {
                     username = Metodos.CheckString("Introduce un username");
-                    Metodos.CheckUsername(users, username);
+                    Metodos.CheckUsername(username);
                     check = false;
                 }
                 catch (UsernameAlreadyExistException e)
@@ -62,12 +62,12 @@ namespace PedroPinturas.Functions
         }
 
         //Menu login
-        public static Usuario login(List<Usuario> usuarios)
+        public static Usuario Login()
         {
             string username = Metodos.CheckString("Introduce el username");
             string password = Metodos.CheckString("Introduce tu password");
 
-            var usuario = Metodos.CheckLogin(usuarios, username, password);
+            var usuario = Metodos.CheckLogin(username, password);
             if (usuario == null)
             {
                 throw new IncorrectUserException("Incorrect username or password");
@@ -85,8 +85,9 @@ namespace PedroPinturas.Functions
                 {
                     case 1:
                         {
-                            usuario.Pedidos.Add(Order());
+                            usuario.Pedidos.Add(MakeOrder());
                             Console.WriteLine(Metodos.History(usuario.Pedidos));
+                            Metodos.WriteUser();
                             break;
                         }
                     case 2:
@@ -107,7 +108,7 @@ namespace PedroPinturas.Functions
                 }
             } while (numero != 4);
         }
-        public static Pedido Order()
+        public static Pedido MakeOrder()
         {
             Pedido pedido = new Pedido();
             bool check = true;
@@ -204,7 +205,7 @@ namespace PedroPinturas.Functions
                     }
             }
             pedido.Direccion = Metodos.CheckString(DisplayMenu.Direccion());
-            pedido.Fecha = DateTime.Today;
+            pedido.Fecha = DateTime.Now;
             return pedido;
         }
     }
