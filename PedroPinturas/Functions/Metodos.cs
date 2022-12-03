@@ -13,7 +13,7 @@ namespace PedroPinturas.Functions
     internal static class Metodos
     {
         public static List<Usuario> users = LoadUsers();
-        public static Log Olog = new Log(@"../../../Log");
+        public static Log Olog = new Log(@"./Log");
         //Comprobar que se ha introducido un número valido y si no preguntar hasta que se introduzca
         public static int CheckNumber(string menu, int range)
         {
@@ -107,7 +107,7 @@ namespace PedroPinturas.Functions
 
         public static List<Color> GetColors()
         {
-            string fileName = $@"../../../jsons/colores.json";
+            string fileName = $@"./jsons/colores.json";
             string jsonString = File.ReadAllText(fileName);
             List<Color>? lista = JsonSerializer.Deserialize<List<Color>>(jsonString)!;
             return lista;
@@ -164,7 +164,7 @@ namespace PedroPinturas.Functions
 
         public static List<Usuario> LoadUsers()
         {
-            string fileName = $@"../../../jsons/usuarios.json";
+            string fileName = $@"./jsons/usuarios.json";
             string jsonString = File.ReadAllText(fileName);
             List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
             return lista;
@@ -172,7 +172,7 @@ namespace PedroPinturas.Functions
 
         public static void WriteUser()
         {
-            string fileName = $@"../../../jsons/usuarios.json";
+            string fileName = $@"./jsons/usuarios.json";
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
