@@ -97,16 +97,23 @@ namespace PedroPinturas.Functions
                         }
                     case 3:
                         {
-                            Console.WriteLine(Metodos.ReadColors());
+                            Console.WriteLine("Introduce una fecha con este formato 01/01/2000");
+                            string fecha = Console.ReadLine();
+                            Console.WriteLine(Metodos.History(Metodos.DateFilter(usuario.Pedidos,fecha)));
                             break;
                         }
                     case 4:
+                        {
+                            Console.WriteLine(Metodos.ReadColors());
+                            break;
+                        }
+                    case 5:
                         {
                             Console.WriteLine("Cerrando sesión...");
                             break;
                         }
                 }
-            } while (numero != 4);
+            } while (numero != 5);
         }
         public static Pedido MakeOrder()
         {

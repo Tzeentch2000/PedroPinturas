@@ -26,8 +26,9 @@ namespace PedroPinturas.Functions
             initialMenu.AppendLine("¿QUE DESEA REALIZAR?:");
             initialMenu.AppendLine("1- HACER PEDIDO DE MATERIAL");
             initialMenu.AppendLine("2- VER INVENTARIO PERSONAL");
-            initialMenu.AppendLine("3- VER COLORES DISPONIBLES");
-            initialMenu.AppendLine("4- CERRAR SESIÓN");
+            initialMenu.AppendLine("3- FILTRAR PEDIDOS POR FECHA");
+            initialMenu.AppendLine("4- VER COLORES DISPONIBLES");
+            initialMenu.AppendLine("5- CERRAR SESIÓN");
 
             return initialMenu.ToString();
         }

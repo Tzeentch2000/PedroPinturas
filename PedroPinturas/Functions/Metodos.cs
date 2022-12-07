@@ -183,5 +183,12 @@ namespace PedroPinturas.Functions
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
+
+        public static List<Pedido> DateFilter(List<Pedido> pedidos, String fecha)
+        {
+            //thisDate1.ToString("MM/dd/yyyy") + ".");
+            List<Pedido> pedidosFiltro = pedidos.FindAll(pedido => pedido.Fecha.ToString("dd/MM/yyyy").Equals(fecha));
+            return pedidosFiltro;
+        }
     }
 }
