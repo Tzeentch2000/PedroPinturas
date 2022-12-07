@@ -107,7 +107,7 @@ namespace PedroPinturas.Functions
 
         public static List<Color> GetColors()
         {
-            string fileName = $@"./jsons/colores.json";
+            string fileName = $@"../../../resources/colores.json";
             string jsonString = File.ReadAllText(fileName);
             List<Color>? lista = JsonSerializer.Deserialize<List<Color>>(jsonString)!;
             return lista;
@@ -166,7 +166,7 @@ namespace PedroPinturas.Functions
         {
             try
             {
-                string fileName = $@"./jsons/users/usuarios.json";
+                string fileName = $@"../../../resources/users/usuarios.json";
                 string jsonString = File.ReadAllText(fileName);
                 List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
                 return lista;
@@ -179,7 +179,7 @@ namespace PedroPinturas.Functions
 
         public static void WriteUser()
         {
-            string fileName = $@"./jsons/users/usuarios.json";
+            string fileName = $@"../../../resources/users/usuarios.json";
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
