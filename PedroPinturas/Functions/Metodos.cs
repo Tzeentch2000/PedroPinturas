@@ -164,15 +164,22 @@ namespace PedroPinturas.Functions
 
         public static List<Usuario> LoadUsers()
         {
-            string fileName = $@"./jsons/usuarios.json";
-            string jsonString = File.ReadAllText(fileName);
-            List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
-            return lista;
+            try
+            {
+                string fileName = $@"./jsons/users/usuarios.json";
+                string jsonString = File.ReadAllText(fileName);
+                List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
+                return lista;
+            }
+            catch (FileNotFoundException)
+            {
+                return new List<Usuario>();
+            }
         }
 
         public static void WriteUser()
         {
-            string fileName = $@"./jsons/usuarios.json";
+            string fileName = $@"./jsons/users/usuarios.json";
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
