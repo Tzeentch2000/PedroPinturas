@@ -107,7 +107,7 @@ namespace PedroPinturas.Functions
 
         public static List<Color> GetColors()
         {
-            string fileName = $@"../../../resources/colores.json";
+            string fileName = $@"resources/colores.json";
             string jsonString = File.ReadAllText(fileName);
             List<Color>? lista = JsonSerializer.Deserialize<List<Color>>(jsonString)!;
             return lista;
@@ -131,7 +131,7 @@ namespace PedroPinturas.Functions
             {
                 historial.AppendLine($"--------------------------------------");
                 historial.AppendLine($"PRECIO: {pedido.precio}$");
-                historial.AppendLine($"FECHA: {pedido.Fecha}");
+                historial.AppendLine($"FECHA: {pedido.Fecha.ToString("dd/MM/yyyy")}");
                 historial.AppendLine($"DIRECCIÓN: {pedido.Direccion}");
                 historial.AppendLine("PRODUCTOS:");
                 foreach (var producto in pedido.productos)
@@ -166,7 +166,7 @@ namespace PedroPinturas.Functions
         {
             try
             {
-                string fileName = $@"../../../resources/usuarios.json";
+                string fileName = $@"resources/usuarios.json";
                 string jsonString = File.ReadAllText(fileName);
                 List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
                 return lista;
@@ -179,7 +179,7 @@ namespace PedroPinturas.Functions
 
         public static void WriteUser()
         {
-            string fileName = $@"../../../resources/usuarios.json";
+            string fileName = $@"resources/usuarios.json";
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
