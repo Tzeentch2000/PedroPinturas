@@ -166,7 +166,7 @@ namespace PedroPinturas.Functions
         {
             try
             {
-                string fileName = $@"resources/usuarios.json";
+                string fileName = $@"resources/users/usuarios.json";
                 string jsonString = File.ReadAllText(fileName);
                 List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
                 return lista;
@@ -179,7 +179,7 @@ namespace PedroPinturas.Functions
 
         public static void WriteUser()
         {
-            string fileName = $@"resources/usuarios.json";
+            string fileName = $@"resources/users/usuarios.json";
             string jsonString = JsonSerializer.Serialize(users);
             File.WriteAllText(fileName, jsonString);
         }
