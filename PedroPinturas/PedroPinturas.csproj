@@ -6,9 +6,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <Content Include="resources\*.*">
+      <Content Include="resources\**">
         <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+
+  <Target Name="CreateUsersFolder" AfterTargets="AfterPublish">
+    <MakeDir Directories="$(PublishDir)resources\users" Condition="!Exists('$(PublishDir)resources\users')" />
+  </Target>
 
 </Project>
