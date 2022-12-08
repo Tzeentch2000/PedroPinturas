@@ -80,7 +80,7 @@ namespace PedroPinturas.Functions
             int numero = 0;
             do
             {
-                numero = Metodos.CheckNumber(DisplayMenu.Menu(), 4);
+                numero = Metodos.CheckNumber(DisplayMenu.Menu(), 5);
                 switch (numero)
                 {
                     case 1:
