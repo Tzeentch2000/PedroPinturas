@@ -171,7 +171,8 @@ namespace PedroPinturas.Functions
                 List<Usuario>? lista = JsonSerializer.Deserialize<List<Usuario>>(jsonString)!;
                 return lista;
             }
-            catch (FileNotFoundException)
+            //DirectoryNotFoundException FileNotFoundException
+            catch (Exception)
             {
                 return new List<Usuario>();
             }
