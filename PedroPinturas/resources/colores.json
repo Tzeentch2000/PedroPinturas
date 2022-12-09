@@ -1,8 +1,8 @@
 [
   {
     "Id": "1",
-    "Name": "Negro",
-    "Code": "#000"
+    "Name": "Dorado",
+    "Code": "#878700"
   },
   {
     "Id": "2",
@@ -81,7 +81,7 @@
   },
   {
     "Id": "17",
-    "Name": "Acero",
-    "Code": "#231A24"
+    "Name": "Verde primavera",
+    "Code": "#00ff87"
   }
 ]

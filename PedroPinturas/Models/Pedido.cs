@@ -38,6 +38,7 @@ namespace PedroPinturas.Models
             idNumberSeed++;
             //this.Fecha = DateTime.Today;
             this.productos = new List<Producto>();
+            this.Entrega24h= false;
         }
         /*public Pedido(List<Producto> productos, Boolean entrega, string direccion, decimal precio)
         {

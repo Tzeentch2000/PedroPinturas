@@ -1,3 +1,90 @@
 ﻿[
-
+  {
+    "Id": "2",
+    "User": "Tzeenetch",
+    "Contrasenia": "123",
+    "NombreApellidos": "Guillermo Sanchez Sanz",
+    "Telefono": 123456789,
+    "Pedidos": [
+      {
+        "Id": "1",
+        "Fecha": "2022-12-07T10:59:06.2872913+00:00",
+        "productos": [
+          {
+            "id": "1",
+            "color": {
+              "Id": "17",
+              "Name": "Acero",
+              "Code": "#231A24"
+            },
+            "cantidad": 12,
+            "precio": 78.00,
+            "descripcion": "-Aerosol de pintura de altas prestaciones de baja presi\u00F3n y acabado mate.\n-Maxima precisi\u00F3n.\n-Secado ultrar\u00E1pido.\n-Muelle de presi\u00F3n suave.\n-Alta cubrici\u00F3n\n-Excelente resistencia al exterior\n",
+            "calidad": 1,
+            "productos": 0
+          },
+          {
+            "id": "2",
+            "color": {
+              "Id": "3",
+              "Name": "Verde",
+              "Code": "#58D68D"
+            },
+            "cantidad": 2,
+            "precio": 6.90,
+            "descripcion": "Rotuladores de pintura al agua.\nAcabado mate.\nRellenables.\nGran opacidad.\n",
+            "calidad": 0,
+            "productos": 2
+          }
+        ],
+        "Entrega24h": true,
+        "Direccion": "Direccion Guillermo",
+        "precio": 84.90
+      },
+      {
+        "Id": "2",
+        "Fecha": "2022-12-08T12:11:33.8308931+00:00",
+        "productos": [
+          {
+            "id": "3",
+            "color": {
+              "Id": "3",
+              "Name": "Verde",
+              "Code": "#58D68D"
+            },
+            "cantidad": 1,
+            "precio": 23,
+            "descripcion": "Pintura pl\u00E1stica mate para uso en interior, con buen anclaje y cubrici\u00F3n.\nAlta transpirabilidad.\nIndicada  en obra y mantenimiento de techos, s\u00F3tanos parkings\nAlta cubrici\u00F3n.\n",
+            "calidad": 1,
+            "productos": 1
+          }
+        ],
+        "Entrega24h": true,
+        "Direccion": "d",
+        "precio": 23
+      },
+      {
+        "Id": "3",
+        "Fecha": "2022-12-08T12:40:46.4049451+00:00",
+        "productos": [
+          {
+            "id": "4",
+            "color": {
+              "Id": "17",
+              "Name": "Acero",
+              "Code": "#231A24"
+            },
+            "cantidad": 2,
+            "precio": 6.90,
+            "descripcion": "Rotuladores de pintura al agua.\nAcabado mate.\nRellenables.\nGran opacidad.\n",
+            "calidad": 0,
+            "productos": 2
+          }
+        ],
+        "Entrega24h": true,
+        "Direccion": "2",
+        "precio": 6.90
+      }
+    ]
+  }
 ]
