@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="resources\users"/>
+    <None Remove="resources\users\usuarios.json" />
   </ItemGroup>
 
   <Target Name="CreateUsersFolder" AfterTargets="AfterPublish">
