@@ -1,89 +1,111 @@
 ﻿[
   {
-    "Id": "2",
-    "User": "Tzeenetch",
-    "Contrasenia": "123",
-    "NombreApellidos": "Guillermo Sanchez Sanz",
-    "Telefono": 123456789,
+    "Id": "3",
+    "User": "Diego",
+    "Contrasenia": "321",
+    "NombreApellidos": "Diego Anastasio",
+    "Telefono": 675849304,
     "Pedidos": [
       {
-        "Id": "1",
-        "Fecha": "2022-12-07T10:59:06.2872913+00:00",
+        "Id": "4",
+        "Fecha": "2022-12-10T12:42:36.3654634+01:00",
         "productos": [
           {
-            "id": "1",
+            "id": "5",
             "color": {
-              "Id": "17",
-              "Name": "Acero",
-              "Code": "#231A24"
+              "Id": "13",
+              "Name": "Magenta",
+              "Code": "#FF00FF"
             },
-            "cantidad": 12,
-            "precio": 78.00,
-            "descripcion": "-Aerosol de pintura de altas prestaciones de baja presi\u00F3n y acabado mate.\n-Maxima precisi\u00F3n.\n-Secado ultrar\u00E1pido.\n-Muelle de presi\u00F3n suave.\n-Alta cubrici\u00F3n\n-Excelente resistencia al exterior\n",
+            "cantidad": 21,
+            "precio": 136.50,
+            "descripcion": "-Aerosol de pintura de altas prestaciones de baja presi\u00F3n y acabado mate.\r\n-Maxima precisi\u00F3n.\r\n-Secado ultrar\u00E1pido.\r\n-Muelle de presi\u00F3n suave.\r\n-Alta cubrici\u00F3n\r\n-Excelente resistencia al exterior\r\n",
             "calidad": 1,
             "productos": 0
           },
           {
-            "id": "2",
+            "id": "6",
             "color": {
-              "Id": "3",
-              "Name": "Verde",
-              "Code": "#58D68D"
+              "Id": "17",
+              "Name": "Verde primavera",
+              "Code": "#00ff87"
             },
             "cantidad": 2,
-            "precio": 6.90,
-            "descripcion": "Rotuladores de pintura al agua.\nAcabado mate.\nRellenables.\nGran opacidad.\n",
+            "precio": 6.80,
+            "descripcion": "-Aerosol de pintura de altas prestaciones de baja presi\u00F3n y acabado mate.\r\n-Maxima precisi\u00F3n.\r\n-Secado ultrar\u00E1pido.\r\n-Muelle de presi\u00F3n suave.\r\n-Alta cubrici\u00F3n\r\n-Excelente resistencia al exterior\r\n",
             "calidad": 0,
+            "productos": 0
+          }
+        ],
+        "Entrega24h": false,
+        "Direccion": "Direccion",
+        "precio": 143.30
+      }
+    ]
+  },
+  {
+    "Id": "4",
+    "User": "Guillermo",
+    "Contrasenia": "123",
+    "NombreApellidos": "Guillermo Sanchez",
+    "Telefono": 655665438,
+    "Pedidos": [
+      {
+        "Id": "5",
+        "Fecha": "2022-12-10T12:44:33.9507635+01:00",
+        "productos": [
+          {
+            "id": "7",
+            "color": {
+              "Id": "14",
+              "Name": "Cian",
+              "Code": "#00FFFF"
+            },
+            "cantidad": 3,
+            "precio": 15.30,
+            "descripcion": "Rotuladores de pintura al agua.\r\nAcabado mate.\r\nRellenables.\r\nGran opacidad.\r\n",
+            "calidad": 1,
             "productos": 2
           }
         ],
-        "Entrega24h": true,
-        "Direccion": "Direccion Guillermo",
-        "precio": 84.90
+        "Entrega24h": false,
+        "Direccion": "Direccion",
+        "precio": 15.30
       },
       {
-        "Id": "2",
-        "Fecha": "2022-12-08T12:11:33.8308931+00:00",
+        "Id": "6",
+        "Fecha": "2022-12-10T12:45:22.058455+01:00",
         "productos": [
           {
-            "id": "3",
+            "id": "8",
             "color": {
-              "Id": "3",
-              "Name": "Verde",
-              "Code": "#58D68D"
+              "Id": "16",
+              "Name": "Mate",
+              "Code": "#C7BDA7"
             },
             "cantidad": 1,
-            "precio": 23,
-            "descripcion": "Pintura pl\u00E1stica mate para uso en interior, con buen anclaje y cubrici\u00F3n.\nAlta transpirabilidad.\nIndicada  en obra y mantenimiento de techos, s\u00F3tanos parkings\nAlta cubrici\u00F3n.\n",
+            "precio": 6.50,
+            "descripcion": "-Aerosol de pintura de altas prestaciones de baja presi\u00F3n y acabado mate.\r\n-Maxima precisi\u00F3n.\r\n-Secado ultrar\u00E1pido.\r\n-Muelle de presi\u00F3n suave.\r\n-Alta cubrici\u00F3n\r\n-Excelente resistencia al exterior\r\n",
             "calidad": 1,
+            "productos": 0
+          },
+          {
+            "id": "9",
+            "color": {
+              "Id": "12",
+              "Name": "Lima",
+              "Code": "#99FF33"
+            },
+            "cantidad": 2,
+            "precio": 26,
+            "descripcion": "Pintura pl\u00E1stica mate para uso en interior, con buen anclaje y cubrici\u00F3n.\r\nAlta transpirabilidad.\r\nIndicada  en obra y mantenimiento de techos, s\u00F3tanos parkings\r\nAlta cubrici\u00F3n.\r\n",
+            "calidad": 0,
             "productos": 1
           }
         ],
-        "Entrega24h": true,
-        "Direccion": "d",
-        "precio": 23
-      },
-      {
-        "Id": "3",
-        "Fecha": "2022-12-08T12:40:46.4049451+00:00",
-        "productos": [
-          {
-            "id": "4",
-            "color": {
-              "Id": "17",
-              "Name": "Acero",
-              "Code": "#231A24"
-            },
-            "cantidad": 2,
-            "precio": 6.90,
-            "descripcion": "Rotuladores de pintura al agua.\nAcabado mate.\nRellenables.\nGran opacidad.\n",
-            "calidad": 0,
-            "productos": 2
-          }
-        ],
-        "Entrega24h": true,
-        "Direccion": "2",
-        "precio": 6.90
+        "Entrega24h": false,
+        "Direccion": "Direccion Guillermo",
+        "precio": 32.50
       }
     ]
   }

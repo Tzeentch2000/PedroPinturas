@@ -58,13 +58,13 @@ namespace PedroPinturas
                 {
                     //Register
                     usuario = DisplayInteractiveMenu.Registrarse();
-                    Console.WriteLine("¡Usuario registrado con éxito!");
+                    AnsiConsole.MarkupLine($"[green bold]¡Usuario {usuario.NombreApellidos} registrado![/]");
                     Metodos.users.Add(usuario);
                     DisplayInteractiveMenu.InitialMenu(usuario);
                     Metodos.WriteUser();
                 } else
                 {
-
+                    break;
                 }
             } while (true);
         }

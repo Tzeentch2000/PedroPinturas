@@ -130,8 +130,8 @@ namespace PedroPinturas.Functions
             var table = new Table();
             // Creamos las columnas
             table.AddColumn(new TableColumn("Precio").Centered());
+            table.AddColumn(new TableColumn("Fecha").Centered());
             table.AddColumn(new TableColumn("Direccion").Centered());
-            table.AddColumn(new TableColumn("Entrega 24h").Centered());
             table.AddColumn(new TableColumn("Productos").Centered());
             foreach (var pedido in pedidos)
             {
@@ -139,9 +139,9 @@ namespace PedroPinturas.Functions
                 foreach (var producto in pedido.productos)
                 {
                     productos.AppendLine($"x{producto.cantidad} {producto.productos} " +
-                        $"{producto.calidad} {producto.color.Name} {producto.precio}$");
+                        $"{producto.calidad} [{producto.color.Code}]{producto.color.Name}[/] {producto.precio}$");
                 }
-                table.AddRow(new Markup($"[paleturquoise1]{pedido.precio}[/]"),
+                table.AddRow(new Markup($"[paleturquoise1]{pedido.precio}$[/]"),
                     new Markup($"[paleturquoise1]{pedido.Fecha.ToString("dd/MM/yyyy")}[/]"),
                     new Markup($"[paleturquoise1]{pedido.Direccion}[/]"), 
                     new Panel($"{productos.ToString()}"));

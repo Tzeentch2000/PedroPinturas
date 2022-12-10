@@ -1,8 +1,8 @@
 [
   {
     "Id": "1",
-    "Name": "Dorado",
-    "Code": "#878700"
+    "Name": "Orochi",
+    "Code": "#ff87ff"
   },
   {
     "Id": "2",
@@ -12,7 +12,7 @@
   {
     "Id": "3",
     "Name": "Verde",
-    "Code": "#58D68D"
+    "Code": "#87ff00"
   },
   {
     "Id": "4",
@@ -22,7 +22,7 @@
   {
     "Id": "5",
     "Name": "Azul",
-    "Code": "#3498DB"
+    "Code": "#00afff"
   },
   {
     "Id": "6",
@@ -32,17 +32,17 @@
   {
     "Id": "7",
     "Name": "Morado",
-    "Code": "#8E44AD"
+    "Code": "#af00ff"
   },
   {
     "Id": "8",
     "Name": "Rosa",
-    "Code": "#FFA07A"
+    "Code": "#ff0087"
   },
   {
     "Id": "9",
     "Name": "Naranja",
-    "Code": "#F5B041"
+    "Code": "#d78700"
   },
   {
     "Id": "10",
@@ -71,8 +71,8 @@
   },
   {
     "Id": "15",
-    "Name": "Sepia",
-    "Code": "#382C1E"
+    "Name": "Amarrilo",
+    "Code": "#d7ff00"
   },
   {
     "Id": "16",
@@ -81,7 +81,7 @@
   },
   {
     "Id": "17",
-    "Name": "Verde primavera",
-    "Code": "#00ff87"
+    "Name": "Agua",
+    "Code": "#87ffff"
   }
 ]
