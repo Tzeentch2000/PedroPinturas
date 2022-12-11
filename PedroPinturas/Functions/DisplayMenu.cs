@@ -1,5 +1,6 @@
 ﻿using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text;
