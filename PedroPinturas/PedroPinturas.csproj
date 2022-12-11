@@ -15,6 +15,14 @@
     <None Remove="resources\users\usuarios.json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Spectre.Console" Version="0.45.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Log\" />
+  </ItemGroup>
+
   <Target Name="CreateUsersFolder" AfterTargets="AfterPublish">
     <MakeDir Directories="$(PublishDir)resources\users" Condition="!Exists('$(PublishDir)resources\users')" />
   </Target>

@@ -1,5 +1,6 @@
 ﻿using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
+using Spectre.Console;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace PedroPinturas.Functions
             {
                 try
                 {
-                    Console.WriteLine(menu);
+                    AnsiConsole.MarkupLine(menu);
                     number = Convert.ToInt32(Console.ReadLine());
                     if(CheckRange(number, range))
                     {
@@ -32,12 +33,12 @@ namespace PedroPinturas.Functions
                 }
                 catch (FormatException e)
                 {
-                    Console.WriteLine($"Número incorrecto {e.Message}");
+                    AnsiConsole.MarkupLine($"Número incorrecto [bold red]{e.Message}[/]");
                     Olog.Add(e.Message);
                 }
                 catch(OutOfRangeException e)
                 {
-                    Console.WriteLine(e.Message);
+                    AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
                     Olog.Add(e.Message);
                 }
 
@@ -53,14 +54,14 @@ namespace PedroPinturas.Functions
             {
                 try
                 {
-                    Console.WriteLine(messge);
+                    AnsiConsole.MarkupLine(messge);
                     characters = Console.ReadLine().Trim();
                     CheckEmptyCharacter(characters);
                     check = false;
                 }
                 catch(EmptyCharacterExceptions e)
                 {
-                    Console.WriteLine(e.Message);
+                    AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
                     Olog.Add("Campo vacío");
                 }
 
@@ -105,43 +106,47 @@ namespace PedroPinturas.Functions
             return user;
         }
 
-        public static List<Color> GetColors()
+        public static List<Models.Color> GetColors()
         {
             string fileName = $@"resources/colores.json";
             string jsonString = File.ReadAllText(fileName);
-            List<Color>? lista = JsonSerializer.Deserialize<List<Color>>(jsonString)!;
+            List<Models.Color>? lista = JsonSerializer.Deserialize<List<Models.Color>>(jsonString)!;
             return lista;
         }
         public static string ReadColors()
         {
-                List<Color>? lista = GetColors();
+                List<Models.Color>? lista = GetColors();
                 var colores = new System.Text.StringBuilder();
                 int i = 1;
                 foreach(var color in lista)
             {
-                colores.AppendLine($"{i}- {color.Name} {color.Code}");
+                colores.AppendLine($"[{color.Code}]{i}- {color.Name} {color.Code}[/]");
                 i++;
             }
             return colores.ToString();
         }
 
-        public static string History(List<Pedido> pedidos) {
-            var historial = new System.Text.StringBuilder();
+        public static Table History(List<Pedido> pedidos) {
+            var table = new Table();
+            // Creamos las columnas
+            table.AddColumn(new TableColumn("Precio").Centered());
+            table.AddColumn(new TableColumn("Fecha").Centered());
+            table.AddColumn(new TableColumn("Direccion").Centered());
+            table.AddColumn(new TableColumn("Productos").Centered());
             foreach (var pedido in pedidos)
             {
-                historial.AppendLine($"--------------------------------------");
-                historial.AppendLine($"PRECIO: {pedido.precio}$");
-                historial.AppendLine($"FECHA: {pedido.Fecha.ToString("dd/MM/yyyy")}");
-                historial.AppendLine($"DIRECCIÓN: {pedido.Direccion}");
-                historial.AppendLine("PRODUCTOS:");
+                var productos = new StringBuilder();
                 foreach (var producto in pedido.productos)
                 {
-                    historial.AppendLine($"x{producto.cantidad} {producto.productos} " +
-                        $"{producto.calidad} {producto.color.Name} {producto.precio}$");
+                    productos.AppendLine($"x{producto.cantidad} {producto.productos} " +
+                        $"{producto.calidad} [{producto.color.Code}]{producto.color.Name}[/] {producto.precio}$");
                 }
+                table.AddRow(new Markup($"[paleturquoise1]{pedido.precio}$[/]"),
+                    new Markup($"[paleturquoise1]{pedido.Fecha.ToString("dd/MM/yyyy")}[/]"),
+                    new Markup($"[paleturquoise1]{pedido.Direccion}[/]"), 
+                    new Panel($"{productos.ToString()}"));
             }
-            historial.AppendLine($"--------------------------------------");
-            return historial.ToString();
+            return table;
         }
 
         public static bool CheckEmptyCharacter(string text)

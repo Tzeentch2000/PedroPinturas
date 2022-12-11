@@ -8,40 +8,43 @@ namespace PedroPinturas.Functions
 {
     internal static class DisplayMenu
     {
-
+        private static Style highlightStyle = new Style().Foreground(Spectre.Console.Color.White);
         //MENU PRINCIPAL DE LOGEO 
         public static string Initial()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("|BIENVENID@ A PEDRO PINTURAS|");
-            initialMenu.AppendLine("1- INICIAR SESÍON");
-            initialMenu.AppendLine("2- REGISTRARSE");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .Title("[bold underline fuchsia]BIENVENIDO A PACO PINTURAS[/]")
+                    .AddChoices(new[] {
+                        "Iniciar Sesión", "Registrarse", "Salir",}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU OPCIONES DE LA APLICACION 
         public static string Menu()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUE DESEA REALIZAR?:");
-            initialMenu.AppendLine("1- HACER PEDIDO DE MATERIAL");
-            initialMenu.AppendLine("2- VER INVENTARIO PERSONAL");
-            initialMenu.AppendLine("3- FILTRAR PEDIDOS POR FECHA");
-            initialMenu.AppendLine("4- VER COLORES DISPONIBLES");
-            initialMenu.AppendLine("5- CERRAR SESIÓN");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .AddChoices(new[] {
+                        "Hacer pedido", "Historial de pedidos", 
+                        "Filtrar pedidos por fecha","Colores disponibles","Cerrar sesión"}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU PRODUCTOS PARA HACER PEDIDO 
         public static string Productos()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUE PRODUCTO DESA COMPRAR?:");
-            initialMenu.AppendLine("1- SPRAY");
-            initialMenu.AppendLine("2- CUBO");
-            initialMenu.AppendLine("3- ROTULADOR");
+            AnsiConsole.MarkupLine("[fuchsia]Elija un producto[/]");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .HighlightStyle(highlightStyle)
+                    .AddChoices(new[] {
+                        "Spray", "Cubo", "Rotulador",}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU COLOR PARA PRODUCTO 
         public static string Color()
@@ -53,64 +56,74 @@ namespace PedroPinturas.Functions
         //MENU SELECCION SPRAY 
         public static string Spray()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUE TIPO DE SPARY QUIERE?:");
-            initialMenu.AppendLine("1- ESTANDAR: SPRAY DE 300ML // 3.40€");
-            initialMenu.AppendLine("2- PREMIUM: SPRAY DE 600ML // 6.50€");
+            AnsiConsole.MarkupLine("Tipo de [fuchsia]spray[/]");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+                new SelectionPrompt<string>()
+                    .HighlightStyle(highlightStyle)
+                    .AddChoices(new[] {
+                       "Estandar: spray de 300ML // 3.40$", "Premium: spray de 600ML // 6.50$",}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU SELECCION CUBO 
         public static string Cubo()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUE TIPO DE CUBO QUIERE?:");
-            initialMenu.AppendLine("1- ESTANDAR: CUBO DE 4L // 13.00€");
-            initialMenu.AppendLine("2- PREMIUM: CUBO DE 10L // 23.00€");
+            AnsiConsole.MarkupLine("Tipo de [fuchsia]cubo[/]");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+               new SelectionPrompt<string>()
+                   .HighlightStyle(highlightStyle)
+                   .AddChoices(new[] {
+                       "Estandar: cubo de 4L // 13.00$", "Premium: cubo de 10L // 23.00$",}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU SELECCION ROTULADOR 
         public static string Rotulador()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUE TIPO DE ROTULADOR QUIERE?:");
-            initialMenu.AppendLine("1- ESTANDAR: ROTULADOR CON PUNTA 3MM // 3.45€");
-            initialMenu.AppendLine("2- PREMIUM: ROTULADOR CON PUNTA 7MM // 5.10€");
+            AnsiConsole.MarkupLine("Tipo de [fuchsia]rotulador[/]");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+               new SelectionPrompt<string>()
+                   .HighlightStyle(highlightStyle)
+                   .AddChoices(new[] {
+                       "Estandar: rotulador con punta de 3MM // 3.45$", "Premium: rotulador con punta de 7MM // 5.10$",}));
 
-            return initialMenu.ToString();
+            return accion;
         }
         //MENU SELECCION CANTIDAD
         public static string Cantidad()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("INTRODUZCA LA CANTIDAD QUE DESEE COMPRAR PARA EL PRODUCTO");
-            return initialMenu.ToString();
+           return "[fuchsia]Cantidad[/]";
         }
         //MENU SEGUIR AÑADIENDO PRODUCTOS AL PEDIDO
         public static string SeguirComprando()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿DESEA SEGUIR COMPRANDO?");
-            initialMenu.AppendLine("1- SÍ");
-            initialMenu.AppendLine("2- NO");
-            return initialMenu.ToString();
+            var accion = AnsiConsole.Prompt(
+              new SelectionPrompt<string>()
+                  .Title("[fuchsia]¿Seguir comprando?[/]")
+                  .AddChoices(new[] {
+                       "Si", "No",}));
+
+            return accion;
         }
         //MENU ENTREGAR PEDIDO EN 24H
         public static string Entrega24H()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("¿QUIERE QUE SU PEDIDO SE ENTREGUE EN 24H?:");
-            initialMenu.AppendLine("1- SÍ");
-            initialMenu.AppendLine("2- NO");
-            return initialMenu.ToString();
+            AnsiConsole.MarkupLine("[fuchsia]Entrega en 24 horas[/]");
+            // Seleccion de categorias
+            var accion = AnsiConsole.Prompt(
+              new SelectionPrompt<string>()
+                  .AddChoices(new[] {
+                       "Si", "No",}));
+
+            return accion;
         }
         //MENU INSERTAR DIRECCION DE ENTREGA
         public static string Direccion()
         {
-            var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("INTRODUZCA LA DIRECCION PARA LA ENTREGA DEL PEDIDO:");
-            return initialMenu.ToString();
+            return "[fuchsia]Direccion[/]";
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace PedroPinturas.Functions
 {
@@ -21,40 +23,40 @@ namespace PedroPinturas.Functions
             {
                 try
                 {
-                    username = Metodos.CheckString("Introduce un username");
+                    username = Metodos.CheckString("Introduce un[bold blue] username [/]");
                     Metodos.CheckUsername(username);
                     check = false;
                 }
                 catch (UsernameAlreadyExistException e)
                 {
-                    Console.WriteLine(e.Message);
+                    AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
                     Metodos.Olog.Add(e.Message);
                 }
             } while (check);
             check = true;
             do
             {
-                password = Metodos.CheckString("Introduce una password");
-                password2 = Metodos.CheckString("Repite tu password");
+                password = Metodos.CheckString("Introduce una[bold blue] password [/]");
+                password2 = Metodos.CheckString("Repite tu[bold blue] password [/]");
                 if (!String.Equals(password, password2))
                 {
-                    Console.WriteLine("Las password no coinciden");
+                    AnsiConsole.MarkupLine("[bold red]Las passwords no coinciden[/]");
                     Metodos.Olog.Add("Contraseñas no coinciden");
                 }
             } while (!String.Equals(password, password2));
-            nameSurname = Metodos.CheckString("Introduce tu name y surname");
+            nameSurname = Metodos.CheckString("Introduce tu[bold blue] name [/]and[bold blue] surname [/]");
             do
             {
                 try
                 {
-                    Console.WriteLine("Introduce tu phone");
+                    AnsiConsole.MarkupLine("Introduce tu[bold blue] phone [/]");
                     string tel = Console.ReadLine();
                     phone = Metodos.CheckPhone(tel);
                     check = false;
                 }
                 catch (PhoneException e)
                 {
-                    Console.WriteLine(e.Message);
+                    AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
                     Metodos.Olog.Add(e.Message);
                 }
             } while (check);
@@ -64,8 +66,9 @@ namespace PedroPinturas.Functions
         //Menu login
         public static Usuario Login()
         {
-            string username = Metodos.CheckString("Introduce el username");
-            string password = Metodos.CheckString("Introduce tu password");
+            string username = Metodos.CheckString("Introduce tu[bold blue] username [/]");
+            AnsiConsole.MarkupLine("Introduce tu [blue]password[/]");
+            string password = AnsiConsole.Prompt(new TextPrompt<string>("").PromptStyle("fuchsia").Secret());
 
             var usuario = Metodos.CheckLogin(username, password);
             if (usuario == null)
@@ -77,43 +80,32 @@ namespace PedroPinturas.Functions
 
         public static void InitialMenu(Usuario usuario)
         {
-            int numero = 0;
+            string accion = "";
             do
             {
-                numero = Metodos.CheckNumber(DisplayMenu.Menu(), 5);
-                switch (numero)
+                accion = DisplayMenu.Menu();
+                if (accion.Equals("Hacer pedido"))
                 {
-                    case 1:
-                        {
-                            usuario.Pedidos.Add(MakeOrder());
-                            Console.WriteLine(Metodos.History(usuario.Pedidos));
-                            Metodos.WriteUser();
-                            break;
-                        }
-                    case 2:
-                        {
-                            Console.WriteLine(Metodos.History(usuario.Pedidos));
-                            break;
-                        }
-                    case 3:
-                        {
-                            Console.WriteLine("Introduce una fecha con este formato 01/01/2000");
-                            string fecha = Console.ReadLine();
-                            Console.WriteLine(Metodos.History(Metodos.DateFilter(usuario.Pedidos,fecha)));
-                            break;
-                        }
-                    case 4:
-                        {
-                            Console.WriteLine(Metodos.ReadColors());
-                            break;
-                        }
-                    case 5:
-                        {
-                            Console.WriteLine("Cerrando sesión...");
-                            break;
-                        }
+                    usuario.Pedidos.Add(MakeOrder());
+                    //Console.WriteLine(Metodos.History(usuario.Pedidos));
+                    Metodos.WriteUser();
+                } else if (accion.Equals("Historial de pedidos"))
+                {
+                    AnsiConsole.Write(Metodos.History(usuario.Pedidos));
+                } else if (accion.Equals("Filtrar pedidos por fecha"))
+                {
+                    Console.WriteLine("Introduce una fecha con este formato 01/01/2000");
+                    string fecha = Console.ReadLine();
+                    AnsiConsole.Write(Metodos.History(Metodos.DateFilter(usuario.Pedidos, fecha)));
+                } else if (accion.Equals("Colores disponibles"))
+                {
+                    AnsiConsole.MarkupLine(Metodos.ReadColors());
+                } else
+                {
+                    AnsiConsole.MarkupLine("[paleturquoise1]Cerrando sesión...[/]");
+                    Console.WriteLine();
                 }
-            } while (numero != 5);
+            } while (!accion.Equals("Cerrar sesión"));
         }
         public static Pedido MakeOrder()
         {
@@ -121,95 +113,53 @@ namespace PedroPinturas.Functions
             bool check = true;
             do
             {
-                int numero = Metodos.CheckNumber(DisplayMenu.Productos(),3);
-                int numProducto = 0;
                 Producto producto = new Producto();
-                switch (numero)
+                string tipoProducto = DisplayMenu.Productos();
+                Console.WriteLine(tipoProducto);
+                string calidad = "";
+                if (tipoProducto.Equals("Spray"))
                 {
-                    case 1:
-                        {
-                            producto.productos = Productos.Spray;
-                            numProducto = Metodos.CheckNumber(DisplayMenu.Spray(),2);
-                            switch (numProducto)
-                            {
-                                case 1:
-                                    {
-                                        producto.calidad = Calidad.Estandar;
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        producto.calidad = Calidad.Premium;
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
-                    case 2:
-                        {
-                            producto.productos = Productos.Cubo;
-                            numProducto = Metodos.CheckNumber(DisplayMenu.Cubo(), 2);
-                            switch (numProducto)
-                            {
-                                case 1:
-                                    {
-                                        producto.calidad = Calidad.Estandar;
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        producto.calidad = Calidad.Premium;
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
-                    case 3:
-                        {
-                            producto.productos = Productos.Rotulador;
-                            numProducto = Metodos.CheckNumber(DisplayMenu.Rotulador(), 2);
-                            switch (numProducto)
-                            {
-                                case 1:
-                                    {
-                                        producto.calidad = Calidad.Estandar;
-                                        break;
-                                    }
-                                case 2:
-                                    {
-                                        producto.calidad = Calidad.Premium;
-                                        break;
-                                    }
-                            }
-                            break;
-                        }
+                    producto.productos = Productos.Spray;
+                    calidad = DisplayMenu.Spray();
+                } else if (tipoProducto.Equals("Cubo"))
+                {
+                    producto.productos = Productos.Cubo;
+                    calidad = DisplayMenu.Cubo();
+                } else if (tipoProducto.Equals("Rotulador"))
+                {
+                    producto.productos = Productos.Rotulador;
+                    calidad = DisplayMenu.Rotulador();
                 }
+
+                Console.WriteLine(calidad);
+                //Si empiza por Estandar ya sabemos que es Estandar, y sino que es Premium
+                if (calidad.StartsWith("Estandar"))
+                {
+                    producto.calidad = Calidad.Estandar;
+                } else
+                {
+                    producto.calidad = Calidad.Premium;
+                }
+ 
                 producto.cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
-                Console.WriteLine(DisplayMenu.Color());
+                AnsiConsole.MarkupLine(DisplayMenu.Color());
                 int numColor = Metodos.CheckNumber(Metodos.ReadColors(),Metodos.GetColors().Count);
                 //Controlar que color no sea null
                 var color = Metodos.GetColors().Find(color => color.Id.Equals(numColor.ToString()));
                 producto.color = color;
-                int numSeguirComprando = Metodos.CheckNumber(DisplayMenu.SeguirComprando(), 2);
-                if (numSeguirComprando == 2)
+                string seguirComprando = DisplayMenu.SeguirComprando();
+                //Si no quiere seguir comprando nos salimos del bucle
+                if (seguirComprando.Equals("No"))
                 {
                     check = false;
                 }
                 pedido.productos.Add(producto);
             } while (check);
-            int numEntrega = Metodos.CheckNumber(DisplayMenu.Entrega24H(), 2);
-            switch (numEntrega)
+            string entrega = DisplayMenu.Entrega24H();
+            Console.WriteLine(entrega);
+            if (entrega.Equals("si"))
             {
-                case 1:
-                    {
-                        pedido.Entrega24h = true;
-                        break;
-                    }
-                case 2:
-                    {
-                        pedido.Entrega24h = false;
-                        break;
-                    }
+                pedido.Entrega24h= true;
             }
             pedido.Direccion = Metodos.CheckString(DisplayMenu.Direccion());
             pedido.Fecha = DateTime.Now;
