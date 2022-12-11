@@ -13,7 +13,7 @@ namespace PedroPinturas.Functions
         public static string Initial()
         {
             var initialMenu = new StringBuilder();
-            initialMenu.AppendLine("|BIENVENID@ A PACO EL PINTURAS|");
+            initialMenu.AppendLine("|BIENVENID@ A PEDRO PINTURAS|");
             initialMenu.AppendLine("1- INICIAR SESÍON");
             initialMenu.AppendLine("2- REGISTRARSE");
 
