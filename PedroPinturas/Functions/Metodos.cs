@@ -136,12 +136,12 @@ namespace PedroPinturas.Functions
             foreach (var pedido in pedidos)
             {
                 var productos = new StringBuilder();
-                foreach (var producto in pedido.productos)
+                foreach (var producto in pedido.Productos)
                 {
-                    productos.AppendLine($"x{producto.cantidad} {producto.productos} " +
-                        $"{producto.calidad} [{producto.color.Code}]{producto.color.Name}[/] {producto.precio}$");
+                    productos.AppendLine($"x{producto.Cantidad} {producto.Productos} " +
+                        $"{producto.Calidad} [{producto.Color.Code}]{producto.Color.Name}[/] {producto.Precio}$");
                 }
-                table.AddRow(new Markup($"[paleturquoise1]{pedido.precio}$[/]"),
+                table.AddRow(new Markup($"[paleturquoise1]{pedido.Precio}$[/]"),
                     new Markup($"[paleturquoise1]{pedido.Fecha.ToString("dd/MM/yyyy")}[/]"),
                     new Markup($"[paleturquoise1]{pedido.Direccion}[/]"), 
                     new Panel($"{productos.ToString()}"));

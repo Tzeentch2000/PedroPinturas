@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <PackageReference Include="Spectre.Console" Version="0.45.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>
