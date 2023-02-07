@@ -8,46 +8,46 @@ namespace PedroPinturas.Models
         public enum Productos { Spray, Cubo, Rotulador}
     class Producto
     {
-        public string id { get; set; }
-        public Color color { get; set; }
-        public int cantidad { get; set; }
-        public decimal precio {
+        public string Id { get; set; }
+        public Color Color { get; set; }
+        public int Cantidad { get; set; }
+        public decimal Precio {
             get {
                 decimal price = 0;
 
-                if(productos.Equals(Productos.Spray) && calidad.Equals(Calidad.Estandar))
+                if(Productos.Equals(Productos.Spray) && Calidad.Equals(Calidad.Estandar))
                 {
                     price = 3.40m;
                 }
-                if (productos.Equals(Productos.Spray) && calidad.Equals(Calidad.Premium))
+                if (Productos.Equals(Productos.Spray) && Calidad.Equals(Calidad.Premium))
                 {
                     price = 6.50m;
                 }
-                if (productos.Equals(Productos.Cubo) && calidad.Equals(Calidad.Estandar))
+                if (Productos.Equals(Productos.Cubo) && Calidad.Equals(Calidad.Estandar))
                 {
                     price = 13;
                 }
-                if (productos.Equals(Productos.Cubo) && calidad.Equals(Calidad.Premium))
+                if (Productos.Equals(Productos.Cubo) && Calidad.Equals(Calidad.Premium))
                 {
                     price = 23;
                 }
-                if (productos.Equals(Productos.Rotulador) && calidad.Equals(Calidad.Estandar))
+                if (Productos.Equals(Productos.Rotulador) && Calidad.Equals(Calidad.Estandar))
                 {
                     price = 3.45m;
                 }
-                if (productos.Equals(Productos.Rotulador) && calidad.Equals(Calidad.Premium))
+                if (Productos.Equals(Productos.Rotulador) && Calidad.Equals(Calidad.Premium))
                 {
                     price = 5.10m;
                 }
-                return price * cantidad;
+                return price * Cantidad;
             }
         }
-        public string descripcion { 
+        public string Descripcion { 
             get {
 
                 var description = new StringBuilder();
 
-                if (productos.Equals(Productos.Spray)) {
+                if (Productos.Equals(Productos.Spray)) {
                     description.AppendLine("-Aerosol de pintura de altas prestaciones de baja presión y acabado mate.");
                     description.AppendLine("-Maxima precisión.");
                     description.AppendLine("-Secado ultrarápido.");
@@ -55,7 +55,7 @@ namespace PedroPinturas.Models
                     description.AppendLine("-Alta cubrición");
                     description.AppendLine("-Excelente resistencia al exterior");
                 }
-                if (productos.Equals(Productos.Cubo))
+                if (Productos.Equals(Productos.Cubo))
                 {
                     description.AppendLine("Pintura plástica mate para uso en interior, con buen anclaje y cubrición.");
                     description.AppendLine("Alta transpirabilidad.");
@@ -63,7 +63,7 @@ namespace PedroPinturas.Models
                     description.AppendLine("Alta cubrición.");
 
                 }
-                if (productos.Equals(Productos.Rotulador))
+                if (Productos.Equals(Productos.Rotulador))
                 {
                     description.AppendLine("Rotuladores de pintura al agua.");
                     description.AppendLine("Acabado mate.");
@@ -74,29 +74,29 @@ namespace PedroPinturas.Models
             } 
         }
 
-        public Calidad calidad { get; set; }
+        public Calidad Calidad { get; set; }
 
-        public Productos productos { get; set; }
+        public Productos Productos { get; set; }
 
         private static int idNumberSeed = 1;
 
         public Producto()
         {
-            this.id = idNumberSeed.ToString();
+            this.Id = idNumberSeed.ToString();
             idNumberSeed++;
-            this.color = new Color();
-            this.cantidad = 0;
-            this.calidad = Calidad.Estandar;
-            this.productos = Productos.Spray;
+            this.Color = new Color();
+            this.Cantidad = 0;
+            this.Calidad = Calidad.Estandar;
+            this.Productos = Productos.Spray;
         }
 
         public Producto(Color color, int cantidad, Calidad calidad , Productos productos){
-            this.id = idNumberSeed.ToString();
+            this.Id = idNumberSeed.ToString();
             idNumberSeed++;
-            this.color = color;
-            this.cantidad = cantidad;     
-            this.calidad = calidad;
-            this.productos = productos;
+            this.Color = color;
+            this.Cantidad = cantidad;     
+            this.Calidad = calidad;
+            this.Productos = productos;
         }
 
     }

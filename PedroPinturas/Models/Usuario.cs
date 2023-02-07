@@ -16,19 +16,19 @@ namespace PedroPinturas.Models
 
         //Listado de pedidos
 
-        private static int idNumberSeed = 1;
+        //private static int idNumberSeed = 1;
 
         public Usuario()
         {
-            Id = idNumberSeed.ToString();
-            idNumberSeed++;
+            //Id = idNumberSeed.ToString();
+            //idNumberSeed++;
             this.Pedidos = new List<Pedido>();
         }
 
         public Usuario(string username, string password, string nameSurname, int phone)
         {
-            Id = idNumberSeed.ToString();
-            idNumberSeed++;
+            //Id = idNumberSeed.ToString();
+            //idNumberSeed++;
             User = username;
             Contrasenia = password;
             NombreApellidos = nameSurname;

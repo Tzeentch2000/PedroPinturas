@@ -1,4 +1,5 @@
-﻿using PedroPinturas.Exceptions;
+﻿using PedroPinturas.API;
+using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
 using Spectre.Console;
 using System;
@@ -60,7 +61,11 @@ namespace PedroPinturas.Functions
                     Metodos.Olog.Add(e.Message);
                 }
             } while (check);
-            return new Usuario(username, password, nameSurname, phone);
+            //ADD USER TO DATABASE
+            var user = new Usuario(username, password, nameSurname, phone);
+            //var response = ApiCall.InsertarUsuario(user).GetAwaiter().GetResult(); ;
+            //if (response) return user; else return null;
+            return user;
         }
 
         //Menu login
@@ -119,15 +124,15 @@ namespace PedroPinturas.Functions
                 string calidad = "";
                 if (tipoProducto.Equals("Spray"))
                 {
-                    producto.productos = Productos.Spray;
+                    producto.Productos = Productos.Spray;
                     calidad = DisplayMenu.Spray();
                 } else if (tipoProducto.Equals("Cubo"))
                 {
-                    producto.productos = Productos.Cubo;
+                    producto.Productos = Productos.Cubo;
                     calidad = DisplayMenu.Cubo();
                 } else if (tipoProducto.Equals("Rotulador"))
                 {
-                    producto.productos = Productos.Rotulador;
+                    producto.Productos = Productos.Rotulador;
                     calidad = DisplayMenu.Rotulador();
                 }
 
@@ -135,25 +140,25 @@ namespace PedroPinturas.Functions
                 //Si empiza por Estandar ya sabemos que es Estandar, y sino que es Premium
                 if (calidad.StartsWith("Estandar"))
                 {
-                    producto.calidad = Calidad.Estandar;
+                    producto.Calidad = Calidad.Estandar;
                 } else
                 {
-                    producto.calidad = Calidad.Premium;
+                    producto.Calidad = Calidad.Premium;
                 }
  
-                producto.cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
+                producto.Cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
                 AnsiConsole.MarkupLine(DisplayMenu.Color());
                 int numColor = Metodos.CheckNumber(Metodos.ReadColors(),Metodos.GetColors().Count);
                 //Controlar que color no sea null
                 var color = Metodos.GetColors().Find(color => color.Id.Equals(numColor.ToString()));
-                producto.color = color;
+                producto.Color = color;
                 string seguirComprando = DisplayMenu.SeguirComprando();
                 //Si no quiere seguir comprando nos salimos del bucle
                 if (seguirComprando.Equals("No"))
                 {
                     check = false;
                 }
-                pedido.productos.Add(producto);
+                pedido.Productos.Add(producto);
             } while (check);
             string entrega = DisplayMenu.Entrega24H();
             Console.WriteLine(entrega);
