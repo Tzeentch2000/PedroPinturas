@@ -5,7 +5,7 @@ using System.Text;
 
 namespace PedroPinturas.Models
 {
-    class Pedido
+    public class Pedido
     {
         public string Id { get; set; }
 

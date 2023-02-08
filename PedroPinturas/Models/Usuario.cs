@@ -4,7 +4,7 @@ using System.Text;
 
 namespace PedroPinturas.Models
 {
-    internal class Usuario
+    public class Usuario
     {
         public string Id { get; }
         public string User { get; set; }
@@ -22,6 +22,10 @@ namespace PedroPinturas.Models
         {
             Id = idNumberSeed.ToString();
             idNumberSeed++;
+            this.User = "a";
+            this.Contrasenia = "a";
+            this.NombreApellidos = "a";
+            this.Telefono = -1;
             this.Pedidos = new List<Pedido>();
         }
 

@@ -1,4 +1,5 @@
-﻿using PedroPinturas.Exceptions;
+﻿using PedroPinturas.API;
+using PedroPinturas.Exceptions;
 using PedroPinturas.Functions;
 using PedroPinturas.Models;
 using Spectre.Console;
@@ -15,61 +16,65 @@ namespace PedroPinturas
     {
         static async Task Main(string[] args)
         {
-            
+            /*Usuario u = new Usuario();
+            u.User = "a";
+            u.Contrasenia = "a";
+            int numero = ApiCall.Login(ApiURL.LOGIN, u).GetAwaiter().GetResult();
+            Console.WriteLine(numero);*/
             Usuario usuario = new Usuario();
 
-            do
-            {
-                string accion = DisplayMenu.Initial();
+             do
+             {
+                 string accion = DisplayMenu.Initial();
 
-                if(accion.Equals("Iniciar Sesión"))
-                {
-                    try
-                    {
-                        //Login
-                        usuario = DisplayInteractiveMenu.Login();
-                        // Asynchronous
-                        await AnsiConsole.Progress()
-                            .StartAsync(async ctx =>
-                            {
-                                // Define tasks
-                                var task1 = ctx.AddTask("[green]Iniciando sesión[/]");
+                 if(accion.Equals("Iniciar Sesión"))
+                 {
+                     try
+                     {
+                         //Login
+                         usuario = DisplayInteractiveMenu.Login();
+                         // Asynchronous
+                         await AnsiConsole.Progress()
+                             .StartAsync(async ctx =>
+                             {
+                                 // Define tasks
+                                 var task1 = ctx.AddTask("[green]Iniciando sesión[/]");
 
-                                while (!ctx.IsFinished)
-                                {
-                                    // Simulate some work
-                                    await Task.Delay(100);
+                                 while (!ctx.IsFinished)
+                                 {
+                                     // Simulate some work
+                                     await Task.Delay(100);
 
-                                    // Increment
-                                    task1.Increment(5);
-                                }
-                            });
-                        AnsiConsole.MarkupLine($"Bienvenido [green bold]{usuario.NombreApellidos}[/]");
-                        //metodo
-                        DisplayInteractiveMenu.InitialMenu(usuario);
-                    }
-                    catch (IncorrectUserException e)
-                    {
-                        AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
-                        Console.WriteLine("\n");
-                        Metodos.Olog.Add(e.Message);
-                    }
-                } else if(accion.Equals("Registrarse"))
-                {
-                    //Register
-                    usuario = DisplayInteractiveMenu.Registrarse();
-                    if(usuario != null)
-                    {
-                        AnsiConsole.MarkupLine($"[green bold]¡Usuario {usuario.NombreApellidos} registrado![/]");
-                        Metodos.users.Add(usuario);
-                        DisplayInteractiveMenu.InitialMenu(usuario);
-                        Metodos.WriteUser();
-                    }
-                } else
-                {
-                    break;
-                }
-            } while (true);
+                                     // Increment
+                                     task1.Increment(5);
+                                 }
+                             });
+                         AnsiConsole.MarkupLine($"Bienvenido [green bold]{usuario.NombreApellidos}[/]");
+                         //metodo
+                         DisplayInteractiveMenu.InitialMenu(usuario);
+                     }
+                     catch (IncorrectUserException e)
+                     {
+                         AnsiConsole.MarkupLine($"[bold red]{e.Message}[/]");
+                         Console.WriteLine("\n");
+                         Metodos.Olog.Add(e.Message);
+                     }
+                 } else if(accion.Equals("Registrarse"))
+                 {
+                     //Register
+                     usuario = DisplayInteractiveMenu.Registrarse();
+                     if(usuario != null)
+                     {
+                         AnsiConsole.MarkupLine($"[green bold]¡Usuario {usuario.NombreApellidos} registrado![/]");
+                         Metodos.users.Add(usuario);
+                         DisplayInteractiveMenu.InitialMenu(usuario);
+                         Metodos.WriteUser();
+                     }
+                 } else
+                 {
+                     break;
+                 }
+             } while (true);
         }
     }
 }

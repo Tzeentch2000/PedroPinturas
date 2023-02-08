@@ -62,7 +62,7 @@ namespace PedroPinturas.Functions
                 }
             } while (check);
             var user = new Usuario(username, password, nameSurname, phone);
-            var response = ApiCall.Insertar(ApiURL.USER,user).GetAwaiter().GetResult(); ;
+            var response = ApiCall.Post(ApiURL.USER,user).GetAwaiter().GetResult();
             if (response) return user; else return null;
         }
 

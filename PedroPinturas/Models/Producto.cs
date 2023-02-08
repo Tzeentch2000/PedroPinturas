@@ -6,7 +6,7 @@ namespace PedroPinturas.Models
 {
         public enum Calidad { Estandar,Premium}
         public enum Productos { Spray, Cubo, Rotulador}
-    class Producto
+    public class Producto
     {
         public string Id { get; set; }
         public Color Color { get; set; }

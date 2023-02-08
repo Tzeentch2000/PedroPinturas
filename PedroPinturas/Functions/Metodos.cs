@@ -1,4 +1,5 @@
-﻿using PedroPinturas.Exceptions;
+﻿using PedroPinturas.API;
+using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
 using Spectre.Console;
 using System;
@@ -92,8 +93,8 @@ namespace PedroPinturas.Functions
         //Comprobar si existe ese nombre de usuario
         public static bool CheckUsername(string username)
         {
-            var user = users.Find(user => user.User.Equals(username));
-            if (user != null)
+            int resultado = ApiCall.GetParamas<int>($"{API.ApiURL.USERNAME}{username}").GetAwaiter().GetResult();
+            if(resultado != -1)
             {
                 throw new UsernameAlreadyExistException("El nombre de usuario que has introducido ya existe");
             }
@@ -102,8 +103,14 @@ namespace PedroPinturas.Functions
         //Comprobar si el nombre de usuario y la contraseña pertenecen a un usuario
         public static Usuario CheckLogin(string username, string password)
         {
-            var user = users.Find(user => user.User.Equals(username) && user.Contrasenia.Equals(password));
-            return user;
+            var user = new Usuario();
+            user.User = username;
+            user.Contrasenia = password;
+            var id = ApiCall.Login(ApiURL.LOGIN, user).GetAwaiter().GetResult(); ;
+            if (id == -1) return null;
+            // ESTE METODO SI SALE MAL DEVUELVE UN OBJETO VACÍO, ESO DEBERÍA SER NULL
+            var userLogin = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSER}{id}").GetAwaiter().GetResult();
+            return userLogin;
         }
 
         public static List<Models.Color> GetColors()
