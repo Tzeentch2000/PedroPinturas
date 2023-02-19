@@ -106,7 +106,7 @@ namespace PedroPinturas.Functions
             var user = new Usuario();
             user.User = username;
             user.Contrasenia = password;
-            var id = ApiCall.Login(ApiURL.LOGIN, user).GetAwaiter().GetResult(); ;
+            var id = ApiCall.Login(ApiURL.LOGIN, user).GetAwaiter().GetResult();
             if (id == -1) return null;
             // ESTE METODO SI SALE MAL DEVUELVE UN OBJETO VACÍO, ESO DEBERÍA SER NULL
             var userLogin = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSER}{id}").GetAwaiter().GetResult();
