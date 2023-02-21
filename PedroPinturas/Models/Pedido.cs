@@ -16,6 +16,7 @@ namespace PedroPinturas.Models
 
         //Lista de productos
         public List<Producto> Productos { get; set; }
+        public List<Compra> Compras { get; set; }
 
         public bool Entrega24h { get; set; }
 
@@ -38,6 +39,7 @@ namespace PedroPinturas.Models
             idNumberSeed++;
             //this.Fecha = DateTime.Today;
             this.Productos = new List<Producto>();
+            this.Compras = new List<Compra>();
             this.Entrega24h= false;
         }
         /*public Pedido(List<Producto> productos, Boolean entrega, string direccion, decimal precio)

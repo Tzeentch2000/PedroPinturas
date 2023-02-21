@@ -145,7 +145,7 @@ namespace PedroPinturas.Functions
                 var productos = new StringBuilder();
                 foreach (var producto in pedido.Productos)
                 {
-                    productos.AppendLine($"x{producto.Cantidad} {producto.Productos} " +
+                    productos.AppendLine($"x {producto.Productos} " +
                         $"{producto.Calidad} [{producto.Color.Code}]{producto.Color.Name}[/] {producto.Precio}$");
                 }
                 table.AddRow(new Markup($"[paleturquoise1]{pedido.Precio}$[/]"),

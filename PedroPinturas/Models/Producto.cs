@@ -10,7 +10,6 @@ namespace PedroPinturas.Models
     {
         public string Id { get; set; }
         public Color Color { get; set; }
-        public int Cantidad { get; set; }
         public decimal Precio {
             get {
                 decimal price = 0;
@@ -39,7 +38,7 @@ namespace PedroPinturas.Models
                 {
                     price = 5.10m;
                 }
-                return price * Cantidad;
+                return price;
             }
         }
         public string Descripcion { 
@@ -85,16 +84,14 @@ namespace PedroPinturas.Models
             this.Id = idNumberSeed.ToString();
             idNumberSeed++;
             this.Color = new Color();
-            this.Cantidad = 0;
             this.Calidad = Calidad.Estandar;
             this.Productos = Productos.Spray;
         }
 
-        public Producto(Color color, int cantidad, Calidad calidad , Productos productos){
+        public Producto(Color color, Calidad calidad , Productos productos){
             this.Id = idNumberSeed.ToString();
             idNumberSeed++;
-            this.Color = color;
-            this.Cantidad = cantidad;     
+            this.Color = color;    
             this.Calidad = calidad;
             this.Productos = productos;
         }
