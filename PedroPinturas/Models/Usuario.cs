@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PedroPinturas.Models
 {
     public class Usuario
     {
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string Id { get; }
         public string User { get; set; }
         public string Contrasenia { get; set; }
@@ -22,9 +24,10 @@ namespace PedroPinturas.Models
         {
             //Id = idNumberSeed.ToString();
             //idNumberSeed++;
-            this.User = "a";
-            this.Contrasenia = "a";
-            this.NombreApellidos = "a";
+            this.Id = "0";
+            this.User = "";
+            this.Contrasenia = "";
+            this.NombreApellidos = "";
             this.Telefono = -1;
             this.Pedidos = new List<Pedido>();
         }
@@ -33,6 +36,7 @@ namespace PedroPinturas.Models
         {
             //Id = idNumberSeed.ToString();
             //idNumberSeed++;
+            //Id = "2";
             User = username;
             Contrasenia = password;
             NombreApellidos = nameSurname;

@@ -63,6 +63,7 @@ public static class ApiCall
     {
         using (var httpClient = new HttpClient())
         {
+            string jsonString = JsonSerializer.Serialize(entity);
             var response = await httpClient.PostAsJsonAsync(url, entity);
             return response.IsSuccessStatusCode;
         }
@@ -75,7 +76,7 @@ public static class ApiCall
         {
             var response = await httpClient.PostAsJsonAsync(url, entity);
             var customerJsonString = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine("Your response data is: " + customerJsonString);
+            Console.WriteLine("Your response data is: " + customerJsonString);
             var deserialized = JsonSerializer.Deserialize<int>(customerJsonString)!;
             return deserialized;
         }
