@@ -114,9 +114,11 @@ namespace PedroPinturas.Functions
         public static Pedido MakeOrder()
         {
             Pedido pedido = new Pedido();
+            List<Compra> compras = new List<Compra>();
             bool check = true;
             do
             {
+                Compra compra = new Compra();
                 Producto producto = new Producto();
                 string tipoProducto = DisplayMenu.Productos();
                 Console.WriteLine(tipoProducto);
@@ -145,7 +147,7 @@ namespace PedroPinturas.Functions
                     producto.Calidad = Calidad.Premium;
                 }
  
-                producto.Cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
+                compra.Cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
                 AnsiConsole.MarkupLine(DisplayMenu.Color());
                 int numColor = Metodos.CheckNumber(Metodos.ReadColors(),Metodos.GetColors().Count);
                 //Controlar que color no sea null
@@ -157,7 +159,8 @@ namespace PedroPinturas.Functions
                 {
                     check = false;
                 }
-                pedido.Productos.Add(producto);
+                //pedido.Compras.Add(compra);
+                compras.Add(compra);
             } while (check);
             string entrega = DisplayMenu.Entrega24H();
             Console.WriteLine(entrega);

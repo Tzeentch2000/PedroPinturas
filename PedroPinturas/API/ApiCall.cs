@@ -64,7 +64,9 @@ public static class ApiCall
         using (var httpClient = new HttpClient())
         {
             string jsonString = JsonSerializer.Serialize(entity);
+            Console.WriteLine(jsonString);
             var response = await httpClient.PostAsJsonAsync(url, entity);
+            Console.WriteLine(response);
             return response.IsSuccessStatusCode;
         }
     }
@@ -78,6 +80,19 @@ public static class ApiCall
             var customerJsonString = await response.Content.ReadAsStringAsync();
             Console.WriteLine("Your response data is: " + customerJsonString);
             var deserialized = JsonSerializer.Deserialize<int>(customerJsonString)!;
+            return deserialized;
+        }
+    }
+
+    // Compras!!!
+    public static async Task<List<Compra>> Compras(string url, List<Compra> compras)
+    {
+        using (var httpClient = new HttpClient())
+        {
+            var response = await httpClient.PostAsJsonAsync(url, compras);
+            var customerJsonString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Your response data is: " + customerJsonString);
+            var deserialized = JsonSerializer.Deserialize<List<Compra>>(customerJsonString)!;
             return deserialized;
         }
     }
