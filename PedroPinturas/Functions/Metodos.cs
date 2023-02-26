@@ -109,7 +109,7 @@ namespace PedroPinturas.Functions
             var id = ApiCall.Login(ApiURL.LOGIN, user).GetAwaiter().GetResult();
             if (id == -1) return null;
             // ESTE METODO SI SALE MAL DEVUELVE UN OBJETO VACÍO, ESO DEBERÍA SER NULL
-            var userLogin = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSER}{id}").GetAwaiter().GetResult();
+            Usuario userLogin = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSER}{id}").GetAwaiter().GetResult();
             return userLogin;
         }
 
@@ -117,7 +117,7 @@ namespace PedroPinturas.Functions
         {
             string fileName = $@"resources/colores.json";
             string jsonString = File.ReadAllText(fileName);
-            List<Models.Color>? lista = JsonSerializer.Deserialize<List<Models.Color>>(jsonString)!;
+            List<Models.Color>? lista = ApiCall.Get<Models.Color>(ApiURL.COLOR).GetAwaiter().GetResult();
             return lista;
         }
         public static string ReadColors()
@@ -202,6 +202,19 @@ namespace PedroPinturas.Functions
             //thisDate1.ToString("MM/dd/yyyy") + ".");
             List<Pedido> pedidosFiltro = pedidos.FindAll(pedido => pedido.Fecha.ToString("dd/MM/yyyy").Equals(fecha));
             return pedidosFiltro;
+        }
+
+        public static List<Compra> CheckProduct(Compra c, List<Compra> compras)
+        {
+            var compra = compras.Find(compra => compra.Producto.Id == c.Producto.Id);
+            if (compra != null)
+            {
+                compra.Cantidad += c.Cantidad;
+            } else
+            {
+                compras.Add(c);
+            }
+            return compras;
         }
     }
 }

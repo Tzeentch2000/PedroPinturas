@@ -2,14 +2,17 @@
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PedroPinturas.Models
 {
     public class Pedido
     {
-        public string Id { get; set; }
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
+        public int Id { get; set; }
 
         //Date de hoy
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public DateTime Fecha { get; set; }
         //thisDay.ToString("g");
    
@@ -25,7 +28,6 @@ namespace PedroPinturas.Models
                 decimal p = 0m;
                 foreach (var compra in this.Compras)
                 {
-                    foreach (var pedido in this.Compras)
                         p += compra.Cantidad * compra.Producto.Precio;
                 }
                 return p;
@@ -36,9 +38,10 @@ namespace PedroPinturas.Models
         private static int idNumberSeed = 1;
         public Pedido()
         {
-            this.Id = idNumberSeed.ToString();
-            idNumberSeed++;
+            //this.Id = idNumberSeed.ToString();
+            //idNumberSeed++;
             //this.Fecha = DateTime.Today;
+            this.Id = 0;
             this.Compras = new List<Compra>();
             this.Entrega24h= false;
         }

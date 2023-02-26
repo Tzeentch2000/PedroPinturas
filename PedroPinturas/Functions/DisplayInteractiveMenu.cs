@@ -1,6 +1,7 @@
 ﻿using PedroPinturas.API;
 using PedroPinturas.Exceptions;
 using PedroPinturas.Models;
+using PedroPinturas.Models.DTO;
 using Spectre.Console;
 using System;
 using System.Collections.Generic;
@@ -90,12 +91,17 @@ namespace PedroPinturas.Functions
                 accion = DisplayMenu.Menu();
                 if (accion.Equals("Hacer pedido"))
                 {
-                    usuario.Pedidos.Add(MakeOrder());
-                    //Console.WriteLine(Metodos.History(usuario.Pedidos));
-                    Metodos.WriteUser();
+                    var pedido = MakeOrder();
+                    // UNIMOS EL PEDIDO AL USUARIO
+                    pedido.Usuario = new Usuario(usuario.Id,usuario.User,usuario.Contrasenia,usuario.NombreApellidos,usuario.Telefono);
+                    //INSERTAR PEDIDO
+                    var response = ApiCall.Post(ApiURL.PEDIDO, pedido).GetAwaiter().GetResult();
+                    Console.WriteLine(response);
+                    if (!response) Console.WriteLine("Error al insertar el pedido");
                 } else if (accion.Equals("Historial de pedidos"))
                 {
-                    AnsiConsole.Write(Metodos.History(usuario.Pedidos));
+                    var usuarioPedido = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSERPEDIDOS}{usuario.Id}").GetAwaiter().GetResult();
+                    AnsiConsole.Write(Metodos.History(usuarioPedido.Pedidos));
                 } else if (accion.Equals("Filtrar pedidos por fecha"))
                 {
                     Console.WriteLine("Introduce una fecha con este formato 01/01/2000");
@@ -111,29 +117,29 @@ namespace PedroPinturas.Functions
                 }
             } while (!accion.Equals("Cerrar sesión"));
         }
-        public static Pedido MakeOrder()
+        public static PedidoDTO MakeOrder()
         {
-            Pedido pedido = new Pedido();
+            PedidoDTO pedido = new PedidoDTO();
             List<Compra> compras = new List<Compra>();
             bool check = true;
             do
             {
                 Compra compra = new Compra();
-                Producto producto = new Producto();
+                Producto searchProduct = new Producto();
                 string tipoProducto = DisplayMenu.Productos();
                 Console.WriteLine(tipoProducto);
                 string calidad = "";
                 if (tipoProducto.Equals("Spray"))
                 {
-                    producto.Productos = Productos.Spray;
+                    searchProduct.Productos = "Spray";
                     calidad = DisplayMenu.Spray();
                 } else if (tipoProducto.Equals("Cubo"))
                 {
-                    producto.Productos = Productos.Cubo;
+                    searchProduct.Productos = "Cubo";
                     calidad = DisplayMenu.Cubo();
                 } else if (tipoProducto.Equals("Rotulador"))
                 {
-                    producto.Productos = Productos.Rotulador;
+                    searchProduct.Productos = "Rotulador";
                     calidad = DisplayMenu.Rotulador();
                 }
 
@@ -141,26 +147,34 @@ namespace PedroPinturas.Functions
                 //Si empiza por Estandar ya sabemos que es Estandar, y sino que es Premium
                 if (calidad.StartsWith("Estandar"))
                 {
-                    producto.Calidad = Calidad.Estandar;
+                    searchProduct.Calidad = "Estandar";
                 } else
                 {
-                    producto.Calidad = Calidad.Premium;
+                    searchProduct.Calidad = "Premium";
                 }
  
                 compra.Cantidad = Metodos.CheckNumber(DisplayMenu.Cantidad(), 50);
                 AnsiConsole.MarkupLine(DisplayMenu.Color());
                 int numColor = Metodos.CheckNumber(Metodos.ReadColors(),Metodos.GetColors().Count);
                 //Controlar que color no sea null
-                var color = Metodos.GetColors().Find(color => color.Id.Equals(numColor.ToString()));
-                producto.Color = color;
-                string seguirComprando = DisplayMenu.SeguirComprando();
+                var color = Metodos.GetColors().Find(color => color.Id == numColor);
+                searchProduct.Color = color;
+                var producBd = ApiCall.Check<Producto>(ApiURL.CHECKPRODUCT,searchProduct).GetAwaiter().GetResult();
+                if (producBd.Id != 0)
+                {
+                    compra.Producto= producBd;
+                    compras = Metodos.CheckProduct(compra, compras);
+                } else
+                {
+                    Console.WriteLine("¡No se ha podido encontrar el producto!");
+                }
+
                 //Si no quiere seguir comprando nos salimos del bucle
+                string seguirComprando = DisplayMenu.SeguirComprando();
                 if (seguirComprando.Equals("No"))
                 {
                     check = false;
                 }
-                //pedido.Compras.Add(compra);
-                compras.Add(compra);
             } while (check);
             string entrega = DisplayMenu.Entrega24H();
             Console.WriteLine(entrega);
@@ -169,7 +183,7 @@ namespace PedroPinturas.Functions
                 pedido.Entrega24h= true;
             }
             pedido.Direccion = Metodos.CheckString(DisplayMenu.Direccion());
-            pedido.Fecha = DateTime.Now;
+            pedido.Compras = compras;
             return pedido;
         }
     }

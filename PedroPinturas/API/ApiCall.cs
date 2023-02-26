@@ -9,7 +9,6 @@ using System.Text.Json.Serialization;
 using System.Reflection;
 using PedroPinturas.Models;
 
-//SI QUIERO QUE NO ME MAPEE [NotMapped]
 public static class ApiCall
 {
 
@@ -64,9 +63,7 @@ public static class ApiCall
         using (var httpClient = new HttpClient())
         {
             string jsonString = JsonSerializer.Serialize(entity);
-            Console.WriteLine(jsonString);
             var response = await httpClient.PostAsJsonAsync(url, entity);
-            Console.WriteLine(response);
             return response.IsSuccessStatusCode;
         }
     }
@@ -80,6 +77,19 @@ public static class ApiCall
             var customerJsonString = await response.Content.ReadAsStringAsync();
             Console.WriteLine("Your response data is: " + customerJsonString);
             var deserialized = JsonSerializer.Deserialize<int>(customerJsonString)!;
+            return deserialized;
+        }
+    }
+
+    // CheckProduct!!!
+    public static async Task<T> Check<T>(string url, T entity) where T : class
+    {
+        using (var httpClient = new HttpClient())
+        {
+            var response = await httpClient.PostAsJsonAsync(url, entity);
+            var customerJsonString = await response.Content.ReadAsStringAsync();
+            Console.WriteLine("Encontrado!: " + customerJsonString);
+            var deserialized = JsonSerializer.Deserialize<T>(customerJsonString,options);
             return deserialized;
         }
     }

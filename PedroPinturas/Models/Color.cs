@@ -6,7 +6,7 @@ namespace PedroPinturas.Models
 {
     public class Color
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Code { get; set; }
 
@@ -16,7 +16,7 @@ namespace PedroPinturas.Models
 
         public Color(string name, string code)
         {
-            Id = name;
+            Id = 0;
             Name = name;
             Code = code;
         }
