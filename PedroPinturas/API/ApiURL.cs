@@ -6,14 +6,18 @@ namespace PedroPinturas.API
 {
     internal static class ApiURL
     {
-        public const string USER = "https://localhost:7028/Usuario";
-        public const string USERNAME = "https://localhost:7028/Usuario/Username/";
-        public const string GETUSER = "https://localhost:7028/Usuario/";
-        public const string LOGIN = "https://localhost:7028/Usuario/Login";
-        public const string GETUSERPEDIDOS = "https://localhost:7028/Usuario/pedidos/";
-        public const string COLOR = "https://localhost:7028/Color";
-        public const string PASSWORD = "https://localhost:7028/Color";
-        public const string CHECKPRODUCT = "https://localhost:7028/Producto/CheckProduct";
-        public const string PEDIDO = "https://localhost:7028/Pedido";
+        const string GENERAL = "https://apipedropinturas.azurewebsites.net/";
+        public const string USER = GENERAL+"/Usuario";
+        public const string USERNAME = GENERAL + "/Usuario/Username/";
+        public const string GETUSER = GENERAL + "/Usuario/";
+        public const string LOGIN = GENERAL + "/Usuario/Login";
+        //public const string GETUSERPEDIDOS = "/Usuario/pedidos/";
+        public const string GETUSERPEDIDOS = GENERAL + "/Pedido/user/";
+        public const string COLOR = GENERAL + "/Color";
+        public const string PASSWORD = GENERAL + "/Color";
+        public const string CHECKPRODUCT = GENERAL + "/Producto/CheckProduct";
+        public const string PEDIDO = GENERAL + "/Pedido";
+        public const string PEDIDOFILTROFECHA = GENERAL + "/Pedido/date/";
+
     }
 }

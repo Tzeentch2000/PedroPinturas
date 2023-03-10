@@ -13,6 +13,11 @@ namespace PedroPinturas.Models
         public string Contrasenia { get; set; }
         public string NombreApellidos { get; set; }
         public int Telefono { get; set; }
+        public bool IsAdmin { get
+            {
+                return false;
+            }
+        }
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingDefault)]
         public List<Pedido> Pedidos { get; set; }
 

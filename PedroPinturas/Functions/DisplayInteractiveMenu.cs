@@ -65,7 +65,12 @@ namespace PedroPinturas.Functions
             var user = new Usuario(username, password, nameSurname, phone);
             var response = ApiCall.Post(ApiURL.USER,user).GetAwaiter().GetResult();
             Console.WriteLine(response);
-            if (response) return user; else return null;
+            if (response)
+            {
+                return user;
+            } else {
+                return null;
+            } 
         }
 
         //Menu login
@@ -93,15 +98,16 @@ namespace PedroPinturas.Functions
                 {
                     var pedido = MakeOrder();
                     // UNIMOS EL PEDIDO AL USUARIO
-                    pedido.Usuario = new Usuario(usuario.Id,usuario.User,usuario.Contrasenia,usuario.NombreApellidos,usuario.Telefono);
+                    pedido.IdUsuario = usuario.Id;
                     //INSERTAR PEDIDO
                     var response = ApiCall.Post(ApiURL.PEDIDO, pedido).GetAwaiter().GetResult();
                     Console.WriteLine(response);
                     if (!response) Console.WriteLine("Error al insertar el pedido");
                 } else if (accion.Equals("Historial de pedidos"))
                 {
-                    var usuarioPedido = ApiCall.GetParamas<Usuario>($"{ApiURL.GETUSERPEDIDOS}{usuario.Id}").GetAwaiter().GetResult();
-                    AnsiConsole.Write(Metodos.History(usuarioPedido.Pedidos));
+                    var pedidos = ApiCall.GetParamasList<Pedido>($"{ApiURL.GETUSERPEDIDOS}{usuario.Id}").GetAwaiter().GetResult();
+                    usuario.Pedidos = pedidos;
+                    AnsiConsole.Write(Metodos.History(usuario.Pedidos));
                 } else if (accion.Equals("Filtrar pedidos por fecha"))
                 {
                     Console.WriteLine("Introduce una fecha con este formato 01/01/2000");

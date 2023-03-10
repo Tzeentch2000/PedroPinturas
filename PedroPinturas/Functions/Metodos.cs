@@ -127,7 +127,7 @@ namespace PedroPinturas.Functions
                 int i = 1;
                 foreach(var color in lista)
             {
-                colores.AppendLine($"[{color.Code}]{i}- {color.Name} {color.Code}[/]");
+                colores.AppendLine($"[{color.Code}]{color.Id}- {color.Name} {color.Code}[/]");
                 i++;
             }
             return colores.ToString();
@@ -200,7 +200,9 @@ namespace PedroPinturas.Functions
         public static List<Pedido> DateFilter(List<Pedido> pedidos, String fecha)
         {
             //thisDate1.ToString("MM/dd/yyyy") + ".");
-            List<Pedido> pedidosFiltro = pedidos.FindAll(pedido => pedido.Fecha.ToString("dd/MM/yyyy").Equals(fecha));
+            //List<Pedido> pedidosFiltro = pedidos.FindAll(pedido => pedido.Fecha.ToString("dd/MM/yyyy").Equals(fecha));
+            var fechaGuiones = fecha.Replace('/', '-');
+            var pedidosFiltro = ApiCall.GetParamasList<Pedido>($"{ApiURL.PEDIDOFILTROFECHA}{fechaGuiones}").GetAwaiter().GetResult();
             return pedidosFiltro;
         }
 

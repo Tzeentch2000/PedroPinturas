@@ -57,6 +57,26 @@ public static class ApiCall
         }
     }
 
+    // Getear!!!
+    public static async Task<List<T>> GetParamasList<T>(string url) where T : new()
+    {
+        using (var httpClient = new HttpClient())
+        {
+            var response = await httpClient.GetAsync(url);
+            if (response.IsSuccessStatusCode)
+            {
+                var content = await response.Content.ReadAsStreamAsync();
+                List<T> entity = JsonSerializer.Deserialize<List<T>>(content, options);
+                return entity;
+            }
+            else
+            {
+                // NO PUEDO DEVOLVER NULL
+                return new List<T>();
+            }
+        }
+    }
+
     // Insertar!!!
     public static async Task<bool> Post<T>(string url, T entity) where T : class
     {
@@ -64,6 +84,7 @@ public static class ApiCall
         {
             string jsonString = JsonSerializer.Serialize(entity);
             var response = await httpClient.PostAsJsonAsync(url, entity);
+            Console.WriteLine(response.ToString());
             return response.IsSuccessStatusCode;
         }
     }

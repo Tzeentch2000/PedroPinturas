@@ -6,7 +6,7 @@ namespace PedroPinturas.Models.DTO
 {
     internal class PedidoDTO : Pedido
     {
-        public Usuario Usuario { get; set; }
+        public int IdUsuario { get; set; }
         public PedidoDTO() : base()
         { 
             
