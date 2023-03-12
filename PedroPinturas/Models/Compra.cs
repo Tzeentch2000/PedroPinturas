@@ -22,7 +22,7 @@ namespace PedroPinturas.Models
     public Compra(Producto producto, Cantidad cantidad){
         this.Id = idNumberSeed.ToString();
         idNumberSeed++;
-        this.Producto = producto;  
+        this.Producto = producto;
         this.Cantidad = cantidad;
     }
 }

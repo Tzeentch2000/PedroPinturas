@@ -12,7 +12,6 @@ namespace PedroPinturas.Models
         //Date de hoy
         public DateTime Fecha { get; set; }
         //thisDay.ToString("g");
-   
 
         //Lista de productos
         public List<Producto> Productos { get; set; }
